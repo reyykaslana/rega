@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUp Game Store</title>
+    <style>
+        /* Reset dan Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #00d4ff;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 5rem 2rem 2rem;
+            margin-top: 60px;
+        }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* Produk Section */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .product h3 {
+            margin-bottom: 0.5rem;
+        }
+        .product p {
+            margin-bottom: 1rem;
+        }
+        .btn {
+            background: #00d4ff;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #0099cc;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            color: #000;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .close {
+            float: right;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            margin-top: 2rem;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <h1>TopUp Game Store</h1>
+        <p>Top-up game favoritmu dengan cepat dan aman!</p>
+    </header>
+
+    <!-- Produk -->
+    <section class="products" id="games">
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?mobile-legends" alt="Mobile Legends">
+            <h3>Mobile Legends</h3>
+            <p>Top-up Diamonds mulai dari Rp 10.000</p>
+            <button class="btn" onclick="openModal('Mobile Legends')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?pubg" alt="PUBG Mobile">
+            <h3>PUBG Mobile</h3>
+            <p>Top-up UC mulai dari Rp 15.000</p>
+            <button class="btn" onclick="openModal('PUBG Mobile')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?free-fire" alt="Free Fire">
+            <h3>Free Fire</h3>
+            <p>Top-up Diamonds mulai dari Rp 8.000</p>
+            <button class="btn" onclick="openModal('Free Fire')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?genshin-impact" alt="Genshin Impact">
+            <h3>Genshin Impact</h3>
+            <p>Top-up Genesis Crystals mulai dari Rp 20.000</p>
+            <button class="btn" onclick="openModal('Genshin Impact')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?honkai-impact-3" alt="Honkai Impact 3">
+            <h3>Honkai Impact 3</h3>
+            <p>Top-up Crystals mulai dari Rp 12.000</p>
+            <button class="btn" onclick="openModal('Honkai Impact 3')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?honkai-star-rail" alt="Honkai Star Rail">
+            <h3>Honkai Star Rail</h3>
+            <p>Top-up Stellar Jade mulai dari Rp 18.000</p>
+            <button class="btn" onclick="openModal('Honkai Star Rail')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?roblox" alt="Roblox">
+            <h3>Roblox</h3>
+            <p>Top-up Robux mulai dari Rp 25.000</p>
+            <button class="btn" onclick="openModal('Roblox')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?umamusume" alt="Umamusume Pretty Derby">
+            <h3>Umamusume Pretty Derby</h3>
+            <p>Top-up Gems mulai dari Rp 14.000</p>
+            <button class="btn" onclick="openModal('Umamusume Pretty Derby')">Beli</button>
+        </div>
+        <div class="product">
+            <img src="https://source.unsplash.com/300x200/?call-of-duty-mobile" alt="CODM">
+            <h3>CODM (Call of Duty Mobile)</h3>
+            <p>Top-up CP mulai dari Rp 16.000</p>
+            <button class="btn" onclick="openModal('CODM')">Beli</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Konfirmasi Pembelian</h2>
+            <p>Anda memilih top-up untuk <span id="game-name"></span>.</p>
+            <p>Masukkan ID Game Anda dan lanjutkan pembayaran.</p>
+            <input type="text" id="game-id" placeholder="ID Game" style="width: 100%; padding: 0.5rem; margin: 1rem 0;">
+            <button class="btn" onclick="proceedPayment()">Bayar Sekarang</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2023 TopUp Game Store. Hubungi kami di contact@topupstore.com</p>
+    </footer>
+
+    <script>
+        // Fungsi Modal
+        function openModal(game) {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('game-name').textContent = game;
+            document.getElementById('game-id').value = ''; // Reset input
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        // Fungsi untuk lanjut pembayaran dengan validasi
+        function proceedPayment() {
+            const gameId = document.getElementById('game-id').value.trim();
+            if (gameId === '') {
+                alert('Harap masukkan ID Game Anda!');
+                return;
+            }
+            alert('Pembayaran diproses untuk ID: ' + gameId + '. Terima kasih!');
+            closeModal();
+        }
+        // Tutup modal jika klik di luar
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
